@@ -13,11 +13,7 @@ import java.sql.SQLException;
 @WebServlet(name = "controllers.AdsIndexServlet", urlPatterns = "/ads")
 public class AdsIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
             request.setAttribute("ads", DaoFactory.getAdsDao().all());
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
         request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
     }
 }

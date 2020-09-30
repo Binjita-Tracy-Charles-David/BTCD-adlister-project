@@ -4,9 +4,6 @@ import com.codeup.adlister.config.Config;
 import com.codeup.adlister.models.Ad;
 import com.mysql.cj.jdbc.Driver;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +60,23 @@ public class MySQLAdsDao implements Ads {
     }
 
 
+    //    for deleting the ads from profile page
+
+//    public void delete(Ad ad) throws SQLException {
+//        String deleteQuery = "DELETE FROM ads WHERE id = ?";
+//        PreparedStatement stmt1 = connection.prepareStatement(deleteQuery);
+//        stmt1.setLong(1, ad.getId());
+//        stmt1.execute();
+//
+//    }
+
+    public void delete (Long id) throws SQLException {
+        String deleteQuery = "DELETE FROM ads WHERE id = ?";
+        PreparedStatement stmt1 = connection.prepareStatement(deleteQuery);
+        stmt1.setLong(1, id);
+        stmt1.execute();
+    }
+
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
             rs.getLong("id"),
@@ -79,4 +93,7 @@ public class MySQLAdsDao implements Ads {
         }
         return ads;
     }
+
+
+
 }

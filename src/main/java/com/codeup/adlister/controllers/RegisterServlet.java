@@ -16,11 +16,12 @@ public class RegisterServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
+        String errorMessage = "sdfasdf";
 
         // validate input
         boolean inputHasErrors = username.isEmpty()
@@ -28,10 +29,21 @@ public class RegisterServlet extends HttpServlet {
             || password.isEmpty()
             || (! password.equals(passwordConfirmation));
 
+
+
         if (inputHasErrors) {
             response.sendRedirect("/register");
+            if (!password.equals(passwordConfirmation)) {
+                errorMessage = "Passwords do not match.";
+            }
             return;
         }
+
+        // pass the value of the errorMessage variable to the view, and send the request - "variable name", value
+        // forward to the messages.jsp file
+        request.setAttribute("errorMessage", errorMessage);
+        request.getRequestDispatcher("../WEB-INF/partials/messages.jsp").forward(request, response);
+
 
         // create and save a new user
         User user = new User(username, email, password);

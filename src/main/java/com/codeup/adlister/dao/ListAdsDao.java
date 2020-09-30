@@ -30,7 +30,12 @@ public class ListAdsDao implements Ads {
 
     @Override
     public void delete(Long id) throws SQLException {
+    return ;
+    }
 
+    @Override
+    public void update(Long id) throws SQLException {
+        return;
     }
 
     private List<Ad> generateAds() {

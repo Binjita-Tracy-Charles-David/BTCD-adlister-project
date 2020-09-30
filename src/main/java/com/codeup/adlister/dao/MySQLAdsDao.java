@@ -61,21 +61,26 @@ public class MySQLAdsDao implements Ads {
 
 
     //    for deleting the ads from profile page
-
-//    public void delete(Ad ad) throws SQLException {
-//        String deleteQuery = "DELETE FROM ads WHERE id = ?";
-//        PreparedStatement stmt1 = connection.prepareStatement(deleteQuery);
-//        stmt1.setLong(1, ad.getId());
-//        stmt1.execute();
-//
-//    }
-
     public void delete (Long id) throws SQLException {
         String deleteQuery = "DELETE FROM ads WHERE id = ?";
         PreparedStatement stmt1 = connection.prepareStatement(deleteQuery);
         stmt1.setLong(1, id);
         stmt1.execute();
     }
+
+   // for updating the ads from the profile page
+    @Override
+    public void update(Long id) throws SQLException {
+        String updateQuery = "UPDATE ads SET title = 'Apples', description = 'Freshly picked, Organic ' Where id = ?";
+        PreparedStatement stmt2 = connection.prepareStatement(updateQuery);
+        stmt2.setLong(1,id);
+        stmt2.executeUpdate();
+
+    }
+
+
+
+
 
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(

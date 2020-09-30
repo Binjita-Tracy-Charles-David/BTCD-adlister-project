@@ -12,7 +12,9 @@ public interface Ads {
     Long insert(Ad ad) ;
 
 //    deleting ads from profile page
-    //void delete(Ad ad) throws SQLException;
-
     void delete(Long id) throws SQLException;
+
+//    updating ads
+    void update(Long id) throws  SQLException;
+
 }

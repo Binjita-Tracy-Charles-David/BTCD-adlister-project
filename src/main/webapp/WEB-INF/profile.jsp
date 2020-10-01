@@ -28,8 +28,8 @@
         <a href="" > AD Info </a>
 <%--            ${ad.id}--%>
     </div>
-</c:forEach>
 
+</c:forEach>
 
 </body>
 </html>

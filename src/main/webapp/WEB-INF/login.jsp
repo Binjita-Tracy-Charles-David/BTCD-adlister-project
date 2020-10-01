@@ -19,6 +19,12 @@
                 <input id="password" name="password" class="form-control" type="password">
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Log In">
+
+<%--TODO: When a user is redirected to the login page, after a successful login, they should be sent back to the page they were trying to visit--%>
+<%--TODO: Create hidden variable to store previous page url --%>
+
+            <input type="hidden" name="from" value="${param.from}">
+
         </form>
     </div>
 </body>

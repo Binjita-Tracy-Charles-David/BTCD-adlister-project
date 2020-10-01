@@ -17,20 +17,32 @@ public class CreateAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
+            request.getSession().setAttribute("redirect", "/ads/create");
             return;
         }
         request.getRequestDispatcher("/WEB-INF/ads/create.jsp")
-            .forward(request, response);
+                .forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+        //TODO: Display error to user if ad title field is empty
+        String title = request.getParameter("title");
+
+        if (title.isEmpty()){
+            request.setAttribute("error", "You cannot leave the title field empty!");
+            request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
+        }
+
         User user = (User) request.getSession().getAttribute("user");
         Ad ad = new Ad(
-            user.getId(),
-            request.getParameter("title"),
-            request.getParameter("description")
+                user.getId(),
+                request.getParameter("title"),
+                request.getParameter("description")
         );
-        DaoFactory.getAdsDao().insert(ad);
+        if(!title.isEmpty()){
+            DaoFactory.getAdsDao().insert(ad);
+        }
         response.sendRedirect("/ads");
     }
 }

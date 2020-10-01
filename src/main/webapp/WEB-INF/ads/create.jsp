@@ -4,9 +4,11 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Create a new Ad" />
     </jsp:include>
+
 </head>
 <body>
     <div class="container">
+        <jsp:include page="/WEB-INF/partials/error.jsp"/>
         <h1>Create a new Ad</h1>
         <form action="/ads/create" method="post">
             <div class="form-group">

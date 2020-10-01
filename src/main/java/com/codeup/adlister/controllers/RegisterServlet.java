@@ -46,6 +46,8 @@ public class RegisterServlet extends HttpServlet {
             }
         }
 
+//TODO: duplicate email
+
 //TODO: Ensure usernames are unique. Change your database schema to enforce
 // that values in the username column of the user table are unique. Make sure
 // a new account cannot be created with an existing username.

@@ -1,6 +1,5 @@
 package com.codeup.adlister.dao;
 
-import com.codeup.adlister.config.Config;
 import com.codeup.adlister.models.Category;
 import com.mysql.cj.jdbc.Driver;
 
@@ -34,6 +33,11 @@ public class MySQLCategoriesDao implements Categories {
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all categories.", e);
         }    }
+
+    @Override
+    public void insert(Category category) {
+
+    }
 
 
     private Category extractCategory(ResultSet rs) throws SQLException {

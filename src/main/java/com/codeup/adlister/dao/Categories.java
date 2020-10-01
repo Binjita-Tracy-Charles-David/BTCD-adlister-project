@@ -9,6 +9,7 @@ public interface Categories {
 
     List<Category> all() throws SQLException;
 
+    void insert(Category category);
 }
 
 

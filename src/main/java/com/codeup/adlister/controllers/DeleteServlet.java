@@ -1,6 +1,8 @@
 package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
+import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,23 +12,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "controllers.ViewProfileServlet", urlPatterns = "/profile")
-public class ViewProfileServlet extends HttpServlet {
+@WebServlet(name = "controllers.DeleteServlet", urlPatterns = "/ads/delete")
+public class DeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
             return;
         }
 
-
-
-        //Show user's ads on their profile page
+//        deleting ads with the id
         try {
-            request.setAttribute("ads", DaoFactory.getAdsDao().all());
+            DaoFactory.getAdsDao().delete(Long.valueOf(request.getParameter("id")));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+        response.sendRedirect("/profile");
     }
 
 

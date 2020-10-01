@@ -38,6 +38,11 @@ public class ListAdsDao implements Ads {
         return;
     }
 
+    @Override
+    public void update(Ad ad) throws SQLException {
+
+    }
+
     private List<Ad> generateAds() {
         List<Ad> ads = new ArrayList<>();
         ads.add(new Ad(

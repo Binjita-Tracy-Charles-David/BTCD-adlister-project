@@ -21,30 +21,31 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
-
         // validate input
         boolean inputHasErrors = username.isEmpty()
-            || email.isEmpty()
-            || password.isEmpty()
-            || (!password.equals(passwordConfirmation));
+
+                || email.isEmpty()
+                || password.isEmpty()
+                || (!password.equals(passwordConfirmation));
 
 //TODO: Display error messages to user based on various input errors
 
         if (inputHasErrors) {
-            if (!password.equals(passwordConfirmation)){
+            if (!password.equals(passwordConfirmation)) {
                 request.setAttribute("error", "Passwords do not match");
                 request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
-            } else if (username.isEmpty()){
+            } else if (username.isEmpty()) {
                 request.setAttribute("error", "Your username field is empty");
                 request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
-            } else if (email.isEmpty()){
+            } else if (email.isEmpty()) {
                 request.setAttribute("error", "Your email field is empty");
                 request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
-            } else if (password.isEmpty()){
+            } else if (password.isEmpty()) {
                 request.setAttribute("error", "Your password field is empty");
                 request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
             }
         }
+
 
 //TODO: duplicate email
 
@@ -53,6 +54,7 @@ public class RegisterServlet extends HttpServlet {
 // a new account cannot be created with an existing username.
 // -----------------------------------------------------------------------
 // Below is the code to display an error message if the entered username is already taken
+
 
         // create and save a new user
         User user = new User(username, email, password);

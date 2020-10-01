@@ -21,7 +21,7 @@ public class CreateAdServlet extends HttpServlet {
             return;
         }
         request.getRequestDispatcher("/WEB-INF/ads/create.jsp")
-            .forward(request, response);
+                .forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -36,9 +36,9 @@ public class CreateAdServlet extends HttpServlet {
 
         User user = (User) request.getSession().getAttribute("user");
         Ad ad = new Ad(
-            user.getId(),
-            request.getParameter("title"),
-            request.getParameter("description")
+                user.getId(),
+                request.getParameter("title"),
+                request.getParameter("description")
         );
         if(!title.isEmpty()){
             DaoFactory.getAdsDao().insert(ad);

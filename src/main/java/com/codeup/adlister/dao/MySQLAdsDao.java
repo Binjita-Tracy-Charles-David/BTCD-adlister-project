@@ -61,8 +61,8 @@ public class MySQLAdsDao implements Ads {
             rs.getLong("id"),
             rs.getLong("user_id"),
             rs.getString("title"),
-            rs.getString("description")
-        );
+            rs.getString("description"));
+
     }
 
     private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {

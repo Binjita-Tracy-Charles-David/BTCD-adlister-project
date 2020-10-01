@@ -21,7 +21,7 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
-        String errorMessage = "sdfasdf";
+        String errorMessage = request.getParameter("errorMessage");
 
         // validate input
         boolean inputHasErrors = username.isEmpty()
@@ -29,20 +29,14 @@ public class RegisterServlet extends HttpServlet {
             || password.isEmpty()
             || (! password.equals(passwordConfirmation));
 
-
-
         if (inputHasErrors) {
-            response.sendRedirect("/register");
-            if (!password.equals(passwordConfirmation)) {
-                errorMessage = "Passwords do not match.";
-            }
+            errorMessage = "Passwords do not match.";
+            response.sendRedirect("/login");
             return;
         }
 
-        // pass the value of the errorMessage variable to the view, and send the request - "variable name", value
-        // forward to the messages.jsp file
         request.setAttribute("errorMessage", errorMessage);
-        request.getRequestDispatcher("../WEB-INF/partials/messages.jsp").forward(request, response);
+        request.getRequestDispatcher("/register.jsp").forward(request, response);
 
 
         // create and save a new user

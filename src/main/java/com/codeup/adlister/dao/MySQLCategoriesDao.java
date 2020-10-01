@@ -34,16 +34,26 @@ public class MySQLCategoriesDao implements Categories {
             throw new RuntimeException("Error retrieving all categories.", e);
         }    }
 
-    @Override
-    public void insert(Category category) {
 
+    public String insert(Category category) {
+        try {
+            String insertQuery = "INSERT INTO categories(name) VALUES (?)";
+            PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, category.getName());
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return rs.getString(1);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating a new category.", e);
+        }
     }
 
 
     private Category extractCategory(ResultSet rs) throws SQLException {
         return new Category(
                 rs.getInt("id"),
-                rs.getString("cat_name"));
+                rs.getString("name"));
     }
 
     private List<Category> createCategoriesFromResults(ResultSet rs) throws SQLException {

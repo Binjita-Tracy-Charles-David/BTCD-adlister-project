@@ -6,9 +6,9 @@ public class Category {
 
     public Category(String category){}
 
-    public Category(int id, String cat_name) {
+    public Category(int id, String name) {
         this.id = id;
-        this.name = cat_name;
+        this.name = name;
     }
 
     public int getId() {
@@ -19,11 +19,11 @@ public class Category {
         this.id = id;
     }
 
-    public String getCat_name() {
+    public String getName() {
         return name;
     }
 
-    public void setCat_name(String cat_name) {
-        this.name = cat_name;
+    public void setName(String name) {
+        this.name = name;
     }
 }

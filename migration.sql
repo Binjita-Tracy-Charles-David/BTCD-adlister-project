@@ -28,7 +28,7 @@ CREATE TABLE ads (
 
 CREATE TABLE categories (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    cat_name VARCHAR(240) NOT NULL,
+    name VARCHAR(240) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -39,7 +39,7 @@ CREATE TABLE ads_categories (
     FOREIGN KEY (cat_id) REFERENCES categories(id)
 );
 
-INSERT INTO categories (cat_name) VALUES
+INSERT INTO categories (name) VALUES
 ('gaming'),
 ('outdoors'),
 ('computers'),

@@ -1,5 +1,6 @@
 package com.codeup.adlister.dao;
 
+import com.codeup.adlister.config.Config;
 import com.codeup.adlister.models.Category;
 import com.mysql.cj.jdbc.Driver;
 
@@ -22,6 +23,9 @@ public class MySQLCategoriesDao implements Categories {
             throw new RuntimeException("Error connecting to the database!", e);
         }
     }
+
+//    public MySQLCategoriesDao(com.codeup.adlister.config.Config config) {
+//    }
 
     @Override
     public List<Category> all() throws SQLException {

@@ -33,11 +33,18 @@ public class LoginServlet extends HttpServlet {
 
         boolean validAttempt = Password.check(password, user.getPassword());
 
+//TODO: Redirect to previous page instead of profile by default
+
         if (validAttempt) {
             request.getSession().setAttribute("user", user);
-            response.sendRedirect("/profile");
+            if (request.getSession().getAttribute("redirect") != null){
+                response.sendRedirect((String) request.getSession().getAttribute("redirect"));
+            } else {
+                response.sendRedirect("/profile");
+            }
         } else {
             response.sendRedirect("/login");
         }
+
     }
 }

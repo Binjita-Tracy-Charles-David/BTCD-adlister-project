@@ -19,5 +19,11 @@ public class AdsIndexServlet extends HttpServlet {
             throwables.printStackTrace();
         }
         request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
+
+        if (request.getSession().getAttribute("user") == null){
+            request.getSession().setAttribute("redirect", "/ads");
+            return;
+        }
+
     }
 }

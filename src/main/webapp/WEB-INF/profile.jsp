@@ -27,8 +27,8 @@
         <p>${ad.description}</p>
         <a href=""> AD ID : ${ad.id}</a>
     </div>
-</c:forEach>
 
+</c:forEach>
 
 </body>
 </html>

@@ -25,7 +25,8 @@
             </jsp:include>
         </h2>
         <p>${ad.description}</p>
-        <a href=""> AD ID : ${ad.id}</a>
+        <a href="" > AD Info </a>
+<%--            ${ad.id}--%>
     </div>
 </c:forEach>
 

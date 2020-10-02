@@ -16,8 +16,8 @@
 
 <p>******************************************</p>
 
-<h3>User name : ${}</h3>
-<h3>Location : SAn Antonio,TX</h3>
+<h3>User name : ${User.username}</h3>
+<h3>User email: ${Uesr.email}</h3>
 
 </body>
 </html>

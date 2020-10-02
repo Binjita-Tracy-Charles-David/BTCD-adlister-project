@@ -18,8 +18,6 @@ public class ViewProfileServlet extends HttpServlet {
             return;
         }
 
-
-
         //Show user's ads on their profile page
         try {
             request.setAttribute("ads", DaoFactory.getAdsDao().all());

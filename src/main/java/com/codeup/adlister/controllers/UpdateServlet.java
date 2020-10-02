@@ -17,6 +17,7 @@ public class UpdateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
+            request.getSession().setAttribute("redirect", "/ads/update");
             return;
         }
         Long adId = Long.valueOf(request.getParameter("id"));
@@ -45,5 +46,14 @@ public class UpdateServlet extends HttpServlet {
             throwables.printStackTrace();
         }
         response.sendRedirect("/profile");
+
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+
+        if (title.isEmpty()){
+            request.setAttribute("error", "You cannot leave the title field empty!");
+            request.setAttribute("stickyDescription", description);
+            request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
+        }
     }
 }

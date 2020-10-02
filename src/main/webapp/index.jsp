@@ -6,10 +6,17 @@
         <jsp:param name="title" value="Welcome to my site!" />
     </jsp:include>
 </head>
-<body>
-    <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-    <div class="container">
-        <h1>Welcome to the Adlister!</h1>
-    </div>
+<body class="bg-secondary">
+<c:choose>
+    <c:when test="${sessionScope.user!=null}">
+        <jsp:include page="/WEB-INF/partials/logged-in-navbar.jsp"/>
+    </c:when>
+    <c:otherwise>
+        <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
+    </c:otherwise>
+</c:choose>
+<div class="container">
+    <h1>Welcome to the Adlister!</h1>
+</div>
 </body>
 </html>

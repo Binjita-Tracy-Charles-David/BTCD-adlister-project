@@ -1,5 +1,6 @@
 package com.codeup.adlister.dao;
 
+import com.codeup.adlister.config.Config;
 import com.codeup.adlister.models.Ad;
 import com.mysql.cj.jdbc.Driver;
 
@@ -53,6 +54,16 @@ public class MySQLAdsDao implements Ads {
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a new ad.", e);
         }
+    }
+
+    @Override
+    public List<Ad> searchCategory(String search) {
+        return null;
+    }
+
+    @Override
+    public List<Ad> searchTitle(String search) {
+        return null;
     }
 
     private Ad extractAd(ResultSet rs) throws SQLException {

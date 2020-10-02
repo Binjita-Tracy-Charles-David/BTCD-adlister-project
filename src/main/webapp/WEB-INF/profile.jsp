@@ -16,6 +16,12 @@
     </jsp:include></h1>
 </div>
 
+<div>
+    <jsp:include page="/WEB-INF/partials/userUpdate.jsp">
+        <jsp:param name="id" value="${user.id}"/>
+    </jsp:include>
+</div>
+
 <h1>Here Are all the ads!</h1>
 
 <%--Users profile ads --%>

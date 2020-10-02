@@ -6,6 +6,7 @@ import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
 
+
 public class MySQLUsersDao implements Users {
     private Connection connection;
 
@@ -52,6 +53,20 @@ public class MySQLUsersDao implements Users {
         }
     }
 
+    @Override
+    public void update (User user) throws SQLException {
+        String updateQuery = "UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?";
+        PreparedStatement stmt2 = connection.prepareStatement(updateQuery);
+        stmt2.setString(1, user.getUsername());
+        stmt2.setString(2, user.getEmail());
+        stmt2.setString(3, user.getPassword());
+        stmt2.setLong(4,user.getId());
+
+        stmt2.executeUpdate();
+
+    }
+
+
     private User extractUser(ResultSet rs) throws SQLException {
         if (! rs.next()) {
             return null;
@@ -63,5 +78,4 @@ public class MySQLUsersDao implements Users {
             rs.getString("password")
         );
     }
-
 }

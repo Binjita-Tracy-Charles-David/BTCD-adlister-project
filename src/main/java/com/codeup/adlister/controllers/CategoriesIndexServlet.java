@@ -10,22 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "controllers.ViewProfileServlet", urlPatterns = "/profile")
-public class ViewProfileServlet extends HttpServlet {
+@WebServlet(name = "controllers.CategoriesIndexServlet", urlPatterns = "/categories")
+public class CategoriesIndexServlet extends HttpServlet {
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getSession().getAttribute("user") == null) {
-            response.sendRedirect("/login");
-            return;
-        }
-
-        //Show user's ads on their profile page
         try {
-            request.setAttribute("ads", DaoFactory.getAdsDao().all());
+            request.setAttribute("categories", DaoFactory.getCategoriesDao().all());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/categories/index.jsp").forward(request, response);
+
+        if (request.getSession().getAttribute("user") == null){
+            request.getSession().setAttribute("redirect", "/categories");
+            return;
+        }
     }
-
-
 }

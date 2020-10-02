@@ -19,8 +19,8 @@ public class ViewServlet extends HttpServlet {
             response.sendRedirect("/login");
             return;
         }
-        Long adId = Long.valueOf(request.getParameter("id"));
-        Long UserId = Long.valueOf(request.getParameter("id"));
+        long adId = Long.parseLong(request.getParameter("id"));
+        long UserId = Long.parseLong(request.getParameter("id"));
 
 
         try {

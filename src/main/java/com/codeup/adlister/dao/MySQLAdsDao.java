@@ -81,8 +81,16 @@ public class MySQLAdsDao implements Ads {
     }
 
 //    for viewing the ads into indiviual links
-    public void getAdById(Ad ad) throws SQLException {
-        String updateQuery = "UPDATE ads SET title = ?, description = ? WHERE id = ?";
+   public Ad getAdById(long id) throws SQLException {
+        String getAdQuery = "SELECT * FROM ads where id=?";
+        PreparedStatement stmt3 = connection.prepareStatement(getAdQuery);
+        stmt3.setLong(1, id);
+        ResultSet rs = stmt3.executeQuery();
+        return new Ad(
+                rs.getLong("id"),
+                rs.getLong("user_id"),
+                rs.getString("title"),
+                rs.getString("description"));
     }
 
 

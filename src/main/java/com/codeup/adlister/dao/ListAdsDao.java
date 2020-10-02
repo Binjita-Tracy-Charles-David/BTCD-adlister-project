@@ -43,6 +43,11 @@ public class ListAdsDao implements Ads {
 
     }
 
+    @Override
+    public Ad getAdById(long id) throws SQLException {
+        return null;
+    }
+
     private List<Ad> generateAds() {
         List<Ad> ads = new ArrayList<>();
         ads.add(new Ad(

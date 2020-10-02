@@ -11,12 +11,13 @@
     <title>Ads view Page</title>
 </head>
 <body>
-<h3>Ads Title: </h3>
-<h3>Ads description :</h3>
-<p>******************************************</p>
-<h3>User name :</h3>
-<h3>Location : SAn Antonio,TX</h3>
+<h3>Ads Title: ${Ad.title} </h3>
+<h3>Ads description : ${Ad.description}</h3>
 
+<p>******************************************</p>
+
+<h3>User name : ${User.username}</h3>
+<h3>User email: ${Uesr.email}</h3>
 
 </body>
 </html>

@@ -11,24 +11,28 @@
 
 <%--    getting all the ads from the database--%>
 <div class="container">
-    <h1>Welcome, ${sessionScope.user.username}!</h1>
+    <h1>Welcome, ${sessionScope.user.username}!
+        <jsp:include page="/WEB-INF/partials/userUpdate.jsp">
+            <jsp:param name="id" value="${user.id}"/>
+        </jsp:include>
+    </h1>
 </div>
 
-<h1>Here Are all the ads!</h1>
-
-<%--Users profile ads --%>
-<c:forEach var="ad" items="${ads}">
-    <div class="col-md-6">
-        <h2>${ad.title}
-            <jsp:include page="/WEB-INF/partials/deledt.jsp">
-                <jsp:param name="id" value="${ad.id}"/>
-            </jsp:include>
-        </h2>
-        <p>${ad.description}</p>
-        <a href=""> AD ID : ${ad.id}</a>
-    </div>
-
-</c:forEach>
+<div class="container">
+    <h1>Here Are all the ads!</h1>
+    <%--Users profile ads --%>
+    <c:forEach var="ad" items="${ads}">
+        <div class="col-md-6">
+            <h2>${ad.title}
+                <jsp:include page="/WEB-INF/partials/deledt.jsp">
+                    <jsp:param name="id" value="${ad.id}"/>
+                </jsp:include>
+            </h2>
+            <p>${ad.description}</p>
+            <a href=""> AD ID : ${ad.id}</a>
+        </div>
+    </c:forEach>
+</div>
 
 </body>
 </html>

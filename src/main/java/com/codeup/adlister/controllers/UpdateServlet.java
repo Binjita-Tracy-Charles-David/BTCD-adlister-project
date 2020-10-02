@@ -46,5 +46,14 @@ public class UpdateServlet extends HttpServlet {
             throwables.printStackTrace();
         }
         response.sendRedirect("/profile");
+
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+
+        if (title.isEmpty()){
+            request.setAttribute("error", "You cannot leave the title field empty!");
+            request.setAttribute("stickyDescription", description);
+            request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
+        }
     }
 }

@@ -20,8 +20,6 @@ public class CreateAdServlet extends HttpServlet {
             response.sendRedirect("/login");
             request.getSession().setAttribute("redirect", "/ads/create");
             return;
-        } else {
-            request.getSession().setAttribute("profile", "/profile");
         }
         request.getRequestDispatcher("/WEB-INF/ads/create.jsp")
             .forward(request, response);

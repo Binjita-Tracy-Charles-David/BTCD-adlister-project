@@ -8,11 +8,12 @@
 
 <%--TODO:Show different links on navbar depending on whether or not user is logged in--%>
 
-            <li><a href="${profile}">${viewProfile}</a></li>
-            <li><a href="${create}">${createAd}</a></li>
+            <li><a href="/profile">View Profile</a></li>
+            <li><a href="/ads/create">Create Ad</a></li>
             <li><a href="/login">Login</a></li>
             <li><a href="/logout">Logout</a></li>
         </ul>
+        <%--            <li><a href="/login">Login</a></li>--%>
     </div>
     </div>
 </nav>

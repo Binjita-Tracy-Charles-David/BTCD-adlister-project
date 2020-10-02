@@ -15,9 +15,9 @@ public class MySQLAdsDao implements Ads {
         try {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
-                    config.getUrl(),
-                    config.getUser(),
-                    config.getPassword()
+                config.getUrl(),
+                config.getUser(),
+                config.getPassword()
             );
         } catch (SQLException e) {
             throw new RuntimeException("Error connecting to the database!", e);
@@ -33,8 +33,8 @@ public class MySQLAdsDao implements Ads {
 //        handling result sets
         ResultSet rs = statement.executeQuery("SELECT * FROM ads");
         while (rs.next()) { //return the next results(loop)
-            Ad ad = new Ad(rs.getLong("id"), rs.getLong("user_id"), rs.getString("title")
-                    , rs.getString("description"));
+            Ad ad = new Ad(rs.getLong("id"),rs.getLong("user_id"), rs.getString("title")
+                    ,rs.getString("description"));
             ads.add(ad);
         }
         return ads;
@@ -50,10 +50,10 @@ public class MySQLAdsDao implements Ads {
             stmt.setString(3, ad.getDescription());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
-            if (rs.next()) {
-                System.out.println("Inserted a new Ads! New id: " + rs.getLong(1));
-            }
-            return ad.getId();
+           if(rs.next()){
+            System.out.println("Inserted a new Ads! New id: " + rs.getLong(1));
+        }
+        return ad.getId();
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a new ad.", e);
         }
@@ -61,7 +61,7 @@ public class MySQLAdsDao implements Ads {
 
 
     //    for deleting the ads from profile page
-    public void delete(Long id) throws SQLException {
+    public void delete (Long id) throws SQLException {
         String deleteQuery = "DELETE FROM ads WHERE id = ?";
         PreparedStatement stmt1 = connection.prepareStatement(deleteQuery);
         stmt1.setLong(1, id);
@@ -70,19 +70,18 @@ public class MySQLAdsDao implements Ads {
 
 
     // for updating the ads from the profile page
-
     public void update(Ad ad) throws SQLException {
         String updateQuery = "UPDATE ads SET title = ?, description = ? WHERE id = ?";
         PreparedStatement stmt2 = connection.prepareStatement(updateQuery);
         stmt2.setString(1, ad.getTitle());
         stmt2.setString(2, ad.getDescription());
-        stmt2.setLong(3, ad.getId());
+        stmt2.setLong(3,ad.getId());
         stmt2.executeUpdate();
 
     }
 
-    //    Creating getAdById
-    public Ad getAdById(long id) throws SQLException {
+//    for viewing the ads into indiviual links
+   public Ad getAdById(long id) throws SQLException {
         String getAdQuery = "SELECT * FROM ads where id=?";
         PreparedStatement stmt3 = connection.prepareStatement(getAdQuery);
         stmt3.setLong(1, id);
@@ -97,10 +96,10 @@ public class MySQLAdsDao implements Ads {
 
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
-                rs.getLong("id"),
-                rs.getLong("user_id"),
-                rs.getString("title"),
-                rs.getString("description"));
+            rs.getLong("id"),
+            rs.getLong("user_id"),
+            rs.getString("title"),
+            rs.getString("description"));
 
     }
 
@@ -111,10 +110,11 @@ public class MySQLAdsDao implements Ads {
         }
         return ads;
     }
-
     @Override
     public void update(Long id) throws SQLException {
 
     }
+
+
 
 }

@@ -24,6 +24,8 @@ public class MySQLCategoriesDao implements Categories {
         }
     }
 
+//    public MySQLCategoriesDao(com.codeup.adlister.config.Config config) {
+//    }
 
     @Override
     public List<Category> all() throws SQLException {

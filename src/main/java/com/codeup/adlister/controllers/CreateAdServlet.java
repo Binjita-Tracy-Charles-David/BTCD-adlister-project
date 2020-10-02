@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
 @WebServlet(name = "controllers.CreateAdServlet", urlPatterns = "/ads/create")
 public class CreateAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,9 +28,11 @@ public class CreateAdServlet extends HttpServlet {
 
         //TODO: Display error to user if ad title field is empty
         String title = request.getParameter("title");
+        String description = request.getParameter("description");
 
         if (title.isEmpty()){
             request.setAttribute("error", "You cannot leave the title field empty!");
+            request.setAttribute("stickyDescription", description);
             request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
         }
 

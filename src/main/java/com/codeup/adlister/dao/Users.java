@@ -1,5 +1,6 @@
 package com.codeup.adlister.dao;
 
+import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
 
 import java.sql.SQLException;
@@ -10,6 +11,7 @@ public interface Users {
 
     Long insert(User user);
 
-    User getUserById(long id) throws SQLException;
+    void update(User user) throws SQLException;
 
+   User getUserById(long id) throws SQLException;
 }

@@ -16,6 +16,12 @@ public class ViewProfileServlet extends HttpServlet {
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
             return;
+        } else {
+            //set attributes to display user-accessible pages on navbar
+            request.getSession().setAttribute("profile", "/profile");
+            request.getSession().setAttribute("viewProfile", "View Profile");
+            request.getSession().setAttribute("create", "/ads/create");
+            request.getSession().setAttribute("createAd", "Create Ad");
         }
 
 

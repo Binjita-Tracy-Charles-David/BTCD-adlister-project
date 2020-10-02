@@ -2,6 +2,7 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.User;
+import com.codeup.adlister.util.Password;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,14 +35,14 @@ public class UserUpdateServlet extends HttpServlet {
         }
         try {
 //            creating variable to update username, email and password
-
             Long id = ((User) request.getSession().getAttribute("user")).getId();
             String username = (String) request.getParameter("username");
             String email = (String) request.getParameter("email");
-            String password = (String) request.getParameter("password");
+            String password = Password.hash((String) request.getParameter("password"));
 
             User user = new User(id, username, email, password);
             DaoFactory.getUsersDao().update(user);
+            request.getSession().setAttribute("user", user);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

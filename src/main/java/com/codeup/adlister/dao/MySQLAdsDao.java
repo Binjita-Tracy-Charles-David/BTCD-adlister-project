@@ -3,6 +3,7 @@ package com.codeup.adlister.dao;
 import com.codeup.adlister.config.Config;
 import com.codeup.adlister.models.Ad;
 import com.mysql.cj.jdbc.Driver;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,13 +68,8 @@ public class MySQLAdsDao implements Ads {
         stmt1.execute();
     }
 
-    @Override
-    public void update(Long id) throws SQLException {
-
-    }
 
     // for updating the ads from the profile page
-
     public void update(Ad ad) throws SQLException {
         String updateQuery = "UPDATE ads SET title = ?, description = ? WHERE id = ?";
         PreparedStatement stmt2 = connection.prepareStatement(updateQuery);
@@ -84,14 +80,19 @@ public class MySQLAdsDao implements Ads {
 
     }
 
+//    for viewing the ads into indiviual links
+    public void getAdById(Ad ad) throws SQLException {
+        String updateQuery = "UPDATE ads SET title = ?, description = ? WHERE id = ?";
+    }
+
 
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
             rs.getLong("id"),
             rs.getLong("user_id"),
             rs.getString("title"),
-            rs.getString("description")
-        );
+            rs.getString("description"));
+
     }
 
     private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
@@ -100,6 +101,10 @@ public class MySQLAdsDao implements Ads {
             ads.add(extractAd(rs));
         }
         return ads;
+    }
+    @Override
+    public void update(Long id) throws SQLException {
+
     }
 
 

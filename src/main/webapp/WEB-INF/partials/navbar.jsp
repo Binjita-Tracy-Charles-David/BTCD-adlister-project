@@ -1,5 +1,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <c:choose>
     <c:when test="${sessionScope.user!=null}">
         <nav class="navbar navbar-default">
@@ -33,4 +35,3 @@
         </nav>
     </c:otherwise>
 </c:choose>
-

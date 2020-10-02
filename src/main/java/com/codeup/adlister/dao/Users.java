@@ -13,5 +13,5 @@ public interface Users {
 
     void update(User user) throws SQLException;
 
-
+   User getUserById(long id) throws SQLException;
 }

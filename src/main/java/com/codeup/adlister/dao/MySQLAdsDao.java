@@ -68,13 +68,8 @@ public class MySQLAdsDao implements Ads {
         stmt1.execute();
     }
 
-    @Override
-    public void update(Long id) throws SQLException {
-
-    }
 
     // for updating the ads from the profile page
-
     public void update(Ad ad) throws SQLException {
         String updateQuery = "UPDATE ads SET title = ?, description = ? WHERE id = ?";
         PreparedStatement stmt2 = connection.prepareStatement(updateQuery);
@@ -83,6 +78,11 @@ public class MySQLAdsDao implements Ads {
         stmt2.setLong(3,ad.getId());
         stmt2.executeUpdate();
 
+    }
+
+//    for viewing the ads into indiviual links
+    public void getAdById(Ad ad) throws SQLException {
+        String updateQuery = "UPDATE ads SET title = ?, description = ? WHERE id = ?";
     }
 
 
@@ -101,6 +101,10 @@ public class MySQLAdsDao implements Ads {
             ads.add(extractAd(rs));
         }
         return ads;
+    }
+    @Override
+    public void update(Long id) throws SQLException {
+
     }
 
 

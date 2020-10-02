@@ -27,6 +27,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- If user is not logged in they only see a login button -->
                     <li><a href="/login?from=${pageContext.request.requestURI}">Login</a></li>
+                    <li><a href="/register">Register</a></li>
                 </ul>
             </div>
             </div>
